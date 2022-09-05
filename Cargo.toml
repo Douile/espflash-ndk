@@ -1,0 +1,22 @@
+[package]
+name = "espflash-ndk"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "espflash_ndk"
+crate-type = ["dylib"]
+
+[dependencies]
+espflash = { git = "https://github.com/Douile/espflash", branch = "dev-feature-cli" }
+serialport = "4.2"
+
+[target.'cfg(target_os="android")'.dependencies]
+jni = { version = "0.5", default-features = false }
+
+[patch.crates-io]
+termios = { path = "./termios-rs" }
+
+
